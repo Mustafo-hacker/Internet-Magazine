@@ -6,6 +6,9 @@ import About from './pages/about/About'
 import Contact from './pages/contact/Contact'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
+import Wishlist from './pages/wishlist/Wishlist'
+import Cart from './pages/cart/Cart'
+import Allproduct from './pages/allProduct/Allproduct'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -32,6 +35,18 @@ const App = () => {
         {
           path: "/login",
           element: <Login/>
+        },
+        {
+          path: "/wishlist",
+          element: <Wishlist/>
+        },
+        {
+          path: "/cart",
+          element: <Cart/>
+        },
+        {
+          path:"/allProduct",
+          element: <Allproduct/>
         }
       ]
     }

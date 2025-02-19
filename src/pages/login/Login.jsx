@@ -7,15 +7,15 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
+    async function loginUser(el) {
+        el.preventDefault()
+    {
         if (!nameOrPhone || !password) {
             setError('Please fill all fields');
             return;
         }
 
-        const response = await fetch('http://localhost:3000/users');
+        const response = await fetch('http://localhost:4000/users');
         const users = await response.json();
 
         const user = users.find(
@@ -28,6 +28,7 @@ const Login = () => {
             setError('Invalid name, phone or password');
         }
     };
+}
 
     return (
         <div className="flex items-center justify-center min-h-screen">
@@ -35,7 +36,7 @@ const Login = () => {
                 <h2 className="text-2xl font-[500] tracking-[2px] text-[27px] mb-1">Log in to Exclusive</h2>
                 <p className="text-sm text-gray-900 mb-6 font-[400]">Enter your details below</p>
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                <form onSubmit={handleLogin}>
+                <form onSubmit={loginUser}>
                     <input
                         type="text"
                         placeholder="Name or Phone"
