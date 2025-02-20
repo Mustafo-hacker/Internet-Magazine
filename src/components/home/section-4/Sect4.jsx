@@ -47,7 +47,7 @@ const Sect4 = () => {
         <div>
             <div className='flex'>
                 <p className='bg-[#DB4444] ml-[140px] w-[25px] h-[45px] rounded-[4px] mt-[40px] max-[638px]:ml-[20px]'></p>
-                <h1 className='text-[#DB4444] font-[600] pt-[50px] pl-[15px] max-[638px]:pt-[30px] max-[638px]:pl-[20px]'>This Month</h1>
+                <h1 className='text-[#DB4444] font-[600] pt-[50px] pl-[15px] max-[638px]:pt-[50px] max-[638px]:pl-[10px]'>This Month</h1>
             </div>
             <div className="flex">
                 <h1 className='pl-[140px] font-[500] text-[37px] pt-[25px] max-[638px]:pl-[20px] max-[638px]:text-[28px] max-[638px]:w-[250px]'>Best Selling Products</h1>
@@ -57,7 +57,7 @@ const Sect4 = () => {
                     </span>
                 </p>
             </div>
-            <div className="flex flex-wrap ml-[120px] max-[638px]:grid max-[638px]:ml-[65px] max-[638px]:mt-[20px]">
+            <div className="flex flex-wrap ml-[120px] max-[638px]:grid max-[638px]:ml-[75px] max-[638px]:mt-[20px]">
                 {products.map((el) => (
                     <div
                         key={el.id}
