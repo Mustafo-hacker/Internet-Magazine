@@ -27,7 +27,6 @@ const Signup = () => {
 
         try {
             let { data } = await axios.post("https://store-api.softclub.tj/Account/register", user);
-            window.location.href = "/login";
         } catch (error) {
             setError('This user is already exists.');
             console.log(error);
