@@ -10,7 +10,7 @@ const Signup = () => {
     const [error, setError] = useState('');
 
     async function registration() {
-        setError('');
+        setError(''); 
 
         if (!userName || !email || !phoneNumber || !password) {
             setError('Please fill all fields.');
@@ -24,9 +24,10 @@ const Signup = () => {
             password: password,
             confirmPassword: password
         };
-
+        
         try {
             let { data } = await axios.post("https://store-api.softclub.tj/Account/register", user);
+            window.location.href = "/login";
         } catch (error) {
             setError('This user is already exists.');
             console.log(error);
@@ -67,11 +68,9 @@ const Signup = () => {
                     onChange={(el) => setPassword(el.target.value)}
                     className="w-full mb-6 p-3 border border-gray-300 rounded-md outline-none"
                 />
-                <Link to="/login">
-                    <button onClick={registration} className="w-full bg-red-500 cursor-pointer text-white py-3 rounded-md mb-4 hover:bg-red-600">
-                        Create Account
-                    </button>
-                </Link>
+                <button onClick={registration} className="w-full bg-red-500 cursor-pointer text-white py-3 rounded-md mb-4 hover:bg-red-600">
+                    Create Account
+                </button>
                 <button className="w-full flex items-center justify-center border cursor-pointer border-gray-300 py-3 rounded-md mb-4 hover:bg-gray-100">
                     <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google" className="mr-2" />
                     Sign up with Google
