@@ -9,6 +9,7 @@ import Login from './pages/login/Login'
 import Wishlist from './pages/wishlist/Wishlist'
 import Cart from './pages/cart/Cart'
 import Allproduct from './pages/allProduct/Allproduct'
+import Info from './pages/infoPage/Info'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const App = () => {
         {
           path:"/allProduct",
           element: <Allproduct/>
+        },
+        {
+          path: "/infoPage",
+          element: <Info/>
         }
       ]
     }

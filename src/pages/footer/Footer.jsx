@@ -2,7 +2,7 @@ import social from '../../assets/social.svg'
 
 const Footer = () => {
     return (
-      <footer className="bg-[black] text-white py-8 px-4 mt-[30px]">
+      <footer className="bg-[black] text-white py-8 px-4 mt-[150px]">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           <div className="space-y-3 ml-[100px]">
             <h3 className="text-xl font-semibold">Exclusive</h3>
