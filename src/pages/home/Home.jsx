@@ -19,10 +19,10 @@ const Home = () => {
       <Sect4 />
       <Sect5/>
       <Sect6/>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly flex-wrap mt-[20px] max-[638px]:flex-col max-[638px]:items-center">
         <Sect7 img={img1} title={"FREE AND FAST DELIVERY"} desc={"Free delivery for all orders over $140"} />
         <Sect7 img={img2} title={"24/7 CUSTOMER SERVICE"} desc={"Friendly 24/7 customer support"} />
-        <Sect7 img={img3} title={"MONEY BACK GUARANTEE"} desc={"We reurn money within 30 days"} />
+        <Sect7 img={img3} title={"MONEY BACK GUARANTEE"} desc={"We return money within 30 days"} />
       </div>
     </div>
   )

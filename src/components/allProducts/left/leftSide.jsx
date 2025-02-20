@@ -6,11 +6,11 @@ const LeftSide = () => {
 
     return (
         <>
-            <div className="flex pl-[140px] pt-[70px]">
+            <div className="flex pl-[140px] pt-[70px] max-[638px]:ml-[-50px]">
                 <h1 className='text-[gray]'>Home /</h1>
                 <h1>Explore Our Products</h1>
             </div>  
-            <div className="w-64 p-4 border-r border-gray-300 ml-[120px] mt-[60px]">
+            <div className="w-64 p-4 border-r border-gray-300 ml-[120px] mt-[60px] max-[638px]:ml-[70px]">
                 <div className="mb-4">
                     <h2 className="font-bold mb-2 pl-1">Category</h2>
                     <ul className="space-y-1">
@@ -71,7 +71,7 @@ const LeftSide = () => {
                     ))}
                 </div>
 
-                =      <div>
+                <div>
                     <h2 className="font-bold mb-2 pl-1">Ratings</h2>
                     {[5, 4, 3, 2, 1].map((rating, index) => (
                         <div key={index} className="flex items-center p-1 space-x-2">

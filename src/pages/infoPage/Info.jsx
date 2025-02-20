@@ -8,17 +8,26 @@ const Info = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="flex gap-10 p-10 max-w-6xl mx-auto">
-      <div className="flex gap-3">
+    <div className="flex flex-col lg:flex-row gap-10 p-10 max-w-6xl mx-auto">
+      <div className="flex gap-3 flex-col lg:flex-row">
         <div className="flex flex-col gap-2">
           {[gamepad1, gamepad2, gamepad3].map((img, index) => (
-            <img key={index} src={img} alt="" className="w-35 h-25 bg-[#80808034] mt-10 rounded-md cursor-pointer" />
+            <img
+              key={index}
+              src={img}
+              alt=""
+              className="w-20 h-20 bg-[#80808034] mt-2 rounded-md cursor-pointer transition-all duration-300 hover:scale-105"
+            />
           ))}
         </div>
-        <img src={gamepadMain} alt="Gamepad" className="w-96 h-99 ml-3 bg-[#8080802b] mt-10 object-contain" />
+        <img
+          src={gamepadMain}
+          alt="Gamepad"
+          className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 object-contain"
+        />
       </div>
-      
-      <div className="w-[450px]">
+
+      <div className="w-full lg:w-[450px]">
         <h1 className="text-3xl font-bold">Havic HV G-92 Gamepad</h1>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-yellow-500 text-lg">★★★★☆</span>
@@ -30,33 +39,41 @@ const Info = () => {
           PlayStation 5 controller skin tough out why faint not cool effect. 
           The artist & more.
         </p>
-        
+
         <div className="mt-4">
           <h3 className="font-semibold">Colours:</h3>
           <div className="flex gap-2 mt-2">
-            <span className="w-6 h-6 bg-black rounded-full cursor-pointer border"></span>
-            <span className="w-6 h-6 bg-red-500 rounded-full cursor-pointer border"></span>
-            <span className="w-6 h-6 bg-gray-300 rounded-full cursor-pointer border"></span>
+            <span className="w-6 h-6 bg-black rounded-full cursor-pointer border transition-colors duration-200 hover:bg-gray-600"></span>
+            <span className="w-6 h-6 bg-red-500 rounded-full cursor-pointer border transition-colors duration-200 hover:bg-red-700"></span>
+            <span className="w-6 h-6 bg-gray-300 rounded-full cursor-pointer border transition-colors duration-200 hover:bg-gray-500"></span>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-4 mt-4">
           <h3 className="font-semibold">Quantity:</h3>
           <div className="flex border rounded-lg overflow-hidden">
-            <button 
-              onClick={() => setQuantity(Math.max(1, quantity - 1))} 
-              className="px-3 py-1 bg-gray-200">-</button>
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 transition duration-200"
+            >
+              -
+            </button>
             <span className="px-4 py-1">{quantity}</span>
-            <button 
-              onClick={() => setQuantity(quantity + 1)} 
-              className="px-3 py-1 bg-gray-200">+</button>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 transition duration-200"
+            >
+              +
+            </button>
           </div>
         </div>
-        
+
         <div className="mt-6 flex gap-4">
-          <button className="bg-red-500 text-white px-6 py-3 rounded-md text-lg font-medium">Buy Now</button>
+          <button className="bg-red-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-red-600 transition duration-200">
+            Buy Now
+          </button>
         </div>
-        
+
         <div className="mt-6 space-y-3 border-t pt-4">
           <div>
             <p className="font-semibold">🚚 Free Delivery</p>

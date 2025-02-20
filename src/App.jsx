@@ -10,6 +10,7 @@ import Wishlist from './pages/wishlist/Wishlist'
 import Cart from './pages/cart/Cart'
 import Allproduct from './pages/allProduct/Allproduct'
 import Info from './pages/infoPage/Info'
+import Profile from './pages/profile/Profile'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const App = () => {
         {
           path: "/infoPage",
           element: <Info/>
+        },
+        {
+          path:"/profile",
+          element:<Profile/>
         }
       ]
     }

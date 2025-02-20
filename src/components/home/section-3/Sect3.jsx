@@ -23,16 +23,16 @@ const Sect3 = () => {
                 <p className='bg-[#DB4444] ml-[140px] w-[25px] h-[45px] rounded-[4px] mt-[40px]'></p>
                 <h1 className='text-[#DB4444] font-[600] pt-[50px] pl-[15px]'>Categories</h1>
             </div>
-            <h1 className='pl-[140px] font-[500] text-[37px] pt-[25px]'>Browse By Category</h1>
-            <div className="flex space-x-4 justify-center">
+            <h1 className='pl-[140px] font-[500] text-[37px] pt-[25px] max-[638px]:pl-[70px] max-[638px]:text-[28px]'>Browse By Category</h1>
+            <div className="flex space-x-4 justify-center  max-[638px]:flex-col max-[638px]:items-center">
                 {categories.map((el) => (
                     <div
                         key={el.id}
                         onClick={() => setActive(el.id)}
-                        className={`flex flex-col ml-[15px] items-center justify-center mt-[20px] w-46 h-34 border-2 rounded-lg cursor-pointer transition-all ${active === el.id
+                        className={`flex flex-col  ml-[15px] items-center justify-center mt-[20px] w-46 h-34 border-2 rounded-lg cursor-pointer transition-all ${active === el.id
                                 ? "bg-red-500 text-white border-red-500"
                                 : "border-gray-300 text-black hover:border-red-500"
-                            }`}
+                            }  max-[638px]:w-[200px] max-[638px]:h-[200px]`}
                     >
                         <img src={el.img} alt="" />
                         <span className="mt-2 font-medium">{el.name}</span>
