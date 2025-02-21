@@ -25,6 +25,7 @@ const Login = () => {
         try {
             let { data } = await axios.post("https://store-api.softclub.tj/Account/login", user);
             navigate("/home");
+            localStorage.setItem("access_token",data.data)
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setError('Incorrect username or password');

@@ -11,6 +11,7 @@ import Cart from './pages/cart/Cart'
 import Allproduct from './pages/allProduct/Allproduct'
 import Info from './pages/infoPage/Info'
 import Profile from './pages/profile/Profile'
+import Oplata from './pages/oplata/Oplata'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const App = () => {
         {
           path:"/profile",
           element:<Profile/>
+        },
+        {
+          path:"/oplata",
+          element:<Oplata/>
         }
       ]
     }
