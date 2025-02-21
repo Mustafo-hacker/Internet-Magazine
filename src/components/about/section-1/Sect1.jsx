@@ -4,7 +4,7 @@ import girls from '../../../assets/girls.svg'
 const Sect1 = () => {
     return (
         <div>
-            <div className="flex pl-[140px] pt-[70px] max-[638px]:pl-[20px]">
+            <div className="flex pl-[140px] pt-[110px] max-[638px]:pl-[20px]">
                 <h1 className='text-[gray]'>Home /</h1>
                 <h1>About</h1>
             </div>

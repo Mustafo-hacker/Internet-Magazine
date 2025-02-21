@@ -53,7 +53,7 @@ const Wishlist = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between px-[140px] pt-[55px] max-[638px]:grid">
+      <div className="flex items-center justify-between px-[140px] pt-[80px] max-[638px]:grid">
         <h1 className="font-[400] text-[18px] max-[638px]:ml-[-90px]">Wishlist (4)</h1>
         <p className="mt-[58px] max-[638px]:ml-[-90px]">
           <span className="border-2 border-[gray] p-[10px_35px] cursor-pointer hover:bg-gray-200">

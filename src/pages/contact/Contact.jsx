@@ -3,7 +3,7 @@ import React from 'react';
 const Contact = () => {
   return (
     <div>
-      <div className="flex pl-[140px] pt-[70px]">
+      <div className="flex pl-[140px] pt-[110px]">
         <h1 className='text-[gray]'>Home /</h1>
         <h1>Contact</h1>
       </div>

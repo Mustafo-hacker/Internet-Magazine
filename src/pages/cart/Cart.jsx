@@ -23,7 +23,7 @@ const Cart = () => {
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 sm:p-4">
+    <div className="max-w-4xl mt-[100px] mx-auto p-6 sm:p-4">
       <h2 className="text-xl font-semibold mb-4">Cart</h2>
       <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[600px]">

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import Footer from '../pages/footer/Footer';
 import logo from '../assets/logo.svg';
 
 const Layout = () => {
     const [isModalOpen, setModalOpen] = useState(false);
+
+    const location = useLocation();
+
 
     const toggleModal = () => {
         setModalOpen(!isModalOpen);
@@ -13,13 +16,13 @@ const Layout = () => {
     return (
         <div>
             <nav>
-                <header className='flex mt-[10px] pl-[130px]'>
+                <header className='fixed top-0 left-0 w-full bg-white shadow-md z-50 flex pl-[130px] py-4'>
                     <img className='cursor-not-allowed max-[638px]:ml-[-120px]' src={logo} alt="" />
                     <div className='pt-[10px]'>
-                        <Link className='pl-[140px] max-[638px]:hidden' to="/home">Home</Link>
-                        <Link className='pl-[40px] max-[638px]:hidden' to="/about">About</Link>
-                        <Link className='pl-[40px] max-[638px]:hidden' to="/contact">Contact</Link>
-                        <Link className='pl-[40px] max-[638px]:hidden' to="/">Sign Up</Link>
+                        <Link className={`pl-[140px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/home" ? "text-red-500" : "text-black"}`} to="/home">Home</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/about" ? "text-red-500" : "text-black"}`} to="/about">About</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/contact" ? "text-red-500" : "text-black"}`} to="/contact">Contact</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/" ? "text-red-500" : "text-black"}`} to="/">Sign Up</Link>
                         <input className='bg-[#80808021] ml-[160px] rounded-[5px] w-[200px] h-[35px] pl-[10px] placeholder:text-[13px]  max-[638px]:hidden' placeholder='What are you looking for?' type="text" />
                         <Link to="/wishlist">
                             <button className='pl-[40px] max-[638px]:hidden'>
@@ -44,7 +47,7 @@ const Layout = () => {
                         </Link>
                     </div>
                     <button
-                        className="block max-[638px]:block hidden ml-43 mt-2"
+                        className="max-[638px]:block hidden ml-43 mt-2"
                         onClick={toggleModal}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">

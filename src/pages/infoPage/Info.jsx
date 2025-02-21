@@ -52,7 +52,7 @@ const Info = () => {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-10 p-10 max-w-6xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-10 p-10 mt-[100px] max-w-6xl mx-auto">
         <div className="flex gap-3 flex-col lg:flex-row">
           <div className="flex flex-col gap-2">
             {[sony, sony2, sony3].map((img, index) => (

@@ -14,7 +14,7 @@ const Sect1 = () => {
         <div>
             <div>
                 <div>
-                    <h1 className='pl-[140px] pt-[45px] font-[400] cursor-pointer max-[638px]:pl-[20px] max-[638px]:pt-[30px]'>Woman’s Fashion</h1>
+                    <h1 className='pl-[140px] pt-[110px] font-[400] cursor-pointer max-[638px]:pl-[20px] max-[638px]:pt-[30px]'>Woman’s Fashion</h1>
                     <h1 className='pl-[140px] pt-[12px] font-[400] cursor-pointer max-[638px]:pl-[20px]'>Men’s Fashion</h1>
                     <h1 className='pl-[140px] pt-[12px] font-[400] cursor-pointer max-[638px]:pl-[20px]'>Electronics</h1>
                     <h1 className='pl-[140px] pt-[12px] font-[400] cursor-pointer max-[638px]:pl-[20px]'>Home & Lifestyle</h1>
