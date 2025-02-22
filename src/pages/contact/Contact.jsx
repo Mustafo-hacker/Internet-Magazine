@@ -4,14 +4,14 @@ import { MdEmail } from 'react-icons/md';
 
 const Contact = () => {
   return (
-    <div className="p-10">
-      <div className="flex pl-[140px] pt-[110px]">
-        <h1 className='text-[gray]'>Home /</h1>
-        <h1>Profile</h1>
+    <div className="p-5 md:p-10">
+      <div className="flex pl-5 md:pl-[140px] pt-5 md:pt-[110px] max-[638px]:mt-[50px]">
+        <h1 className='text-gray-500'>Home /</h1>
+        <h1>Contact</h1>
       </div>
 
-      <div className="flex mt-8 space-x-8">
-        <div className="bg-white shadow-lg p-6 w-1/3 rounded-lg">
+      <div className="flex flex-col md:flex-row mt-8 space-y-8 md:space-y-0 md:space-x-8">
+        <div className="bg-white shadow-lg p-6 w-full md:w-1/3 rounded-lg">
           <div className="flex items-center space-x-4 mb-6">
             <div className="bg-red-500 p-3 rounded-full text-white">
               <FaPhoneAlt />
@@ -36,15 +36,14 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="bg-white shadow-lg p-6 w-2/3 rounded-lg">
-          <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="bg-white shadow-lg p-6 w-full md:w-2/3 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <input type="text" placeholder="Name" className="border p-2 rounded w-full" />
             <input type="email" placeholder="Email" className="border p-2 rounded w-full" />
             <input type="tel" placeholder="Phone" className="border p-2 rounded w-full" />
           </div>
           <textarea placeholder="Your Message" className="border p-2 rounded w-full h-32 mb-4"></textarea>
-          <button className="bg-red-500 ml-[735px] text-white px-6 py-2 rounded">Send Message</button>
+          <button className="bg-red-500 w-full md:w-auto md:ml-auto text-white px-6 py-2 rounded">Send Message</button>
         </div>
       </div>
     </div>

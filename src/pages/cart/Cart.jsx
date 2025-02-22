@@ -84,7 +84,9 @@ const Cart = () => {
         <p className="flex justify-between mt-2">Subtotal: <span>${subtotal}</span></p>
         <p className="flex justify-between">Shipping: <span>Free</span></p>
         <p className="flex justify-between font-bold text-lg mt-2">Total: <span>${subtotal}</span></p>
-        <button className="mt-4 w-full bg-red-500 text-white py-2 rounded cursor-pointer">Proceed to checkout</button>
+        <Link to="/oplata">
+          <button className="mt-4 w-full bg-red-500 text-white py-2 rounded cursor-pointer">Proceed to checkout</button>
+        </Link>
       </div>
     </div>
   );

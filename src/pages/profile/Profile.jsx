@@ -4,7 +4,7 @@ const Profile = () => {
   return (
     <div>
       <div className="flex pl-[140px] pt-[110px]">
-        <h1 className='text-[gray]'>Home /</h1>
+        <h1 className='text-[gray] max-[638px]:ml-[-115px]'>Home /</h1>
         <h1>Profile</h1>
       </div>
       <div className="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
