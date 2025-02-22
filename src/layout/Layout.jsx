@@ -19,10 +19,10 @@ const Layout = () => {
                 <header className='fixed top-0 left-0 w-full bg-white shadow-md z-50 flex pl-[130px] py-4'>
                     <img className='cursor-not-allowed max-[638px]:ml-[-120px]' src={logo} alt="" />
                     <div className='pt-[10px]'>
-                        <Link className={`pl-[140px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/home" ? "text-red-500" : "text-black"}`} to="/home">Home</Link>
-                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/about" ? "text-red-500" : "text-black"}`} to="/about">About</Link>
-                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/contact" ? "text-red-500" : "text-black"}`} to="/contact">Contact</Link>
-                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/" ? "text-red-500" : "text-black"}`} to="/">Sign Up</Link>
+                        <Link className={`pl-[140px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/home" ? "underline" : "text-black"}`} to="/home">Home</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/about" ? "underline" : "text-black"}`} to="/about">About</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/contact" ? "underline" : "text-black"}`} to="/contact">Contact</Link>
+                        <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/" ? "underline" : "text-black"}`} to="/">Sign Up</Link>
                         <input className='bg-[#80808021] ml-[160px] rounded-[5px] w-[200px] h-[35px] pl-[10px] placeholder:text-[13px]  max-[638px]:hidden' placeholder='What are you looking for?' type="text" />
                         <Link to="/wishlist">
                             <button className='pl-[40px] max-[638px]:hidden'>
