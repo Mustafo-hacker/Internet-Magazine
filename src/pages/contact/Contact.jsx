@@ -43,7 +43,7 @@ const Contact = () => {
             <input type="tel" placeholder="Phone" className="border p-2 rounded w-full" />
           </div>
           <textarea placeholder="Your Message" className="border p-2 rounded w-full h-32 mb-4"></textarea>
-          <button className="bg-red-500 w-full md:w-auto md:ml-auto text-white px-6 py-2 rounded">Send Message</button>
+          <button className="bg-red-500 w-full md:w-auto md:ml-auto text-white px-6 py-2 rounded cursor-pointer">Send Message</button>
         </div>
       </div>
     </div>

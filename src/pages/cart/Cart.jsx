@@ -1,26 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import monitor from '../../assets/sony.svg'
 import { Link } from "react-router-dom";
+import axiosInstance from "../../../axiosRequests/axiosRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart, clearCart, updateQuantity, setCart, addToCart } from "../../redux-toolkit/cartSlice/cartSlice";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "LCD Monitor", price: 650, quantity: 1, image: monitor },
-    { id: 2, name: "H1 Gamepad", price: 550, quantity: 2, image: monitor },
-    { id: 3, name: "H1 Gamepad", price: 550, quantity: 2, image: monitor },
-  ]);
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-  const handleQuantityChange = (id, value) => {
-    setCartItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: value } : item))
-    );
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await axiosInstance.get("/get-cart");
+        dispatch(setCart(response.data.items));
+      } catch (error) {
+        console.error("Ошибка при загрузке корзины:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCart();
+  }, [dispatch]);
+
+  const handleQuantityChange = async (id, value) => {
+    if (value < 1) return;
+    dispatch(updateQuantity({ id, quantity: value }));
+    try {
+      await axiosInstance.post("/update-cart", { id, quantity: value });
+    } catch (error) {
+      console.error("Ошибка при обновлении количества:", error);
+    }
   };
 
-  function del(id) {
-    setCartItems(cartItems.filter(el => el.id != id))
-  }
+  const handleRemoveFromCart = async (id) => {
+    dispatch(removeFromCart(id));
+    try {
+      await axiosInstance.post("/remove-from-cart", { id });
+    } catch (error) {
+      console.error("Ошибка при удалении из корзины:", error);
+    }
+  };
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const handleClearCart = async () => {
+    dispatch(clearCart());
+    try {
+      await axiosInstance.post("/clear-cart");
+    } catch (error) {
+      console.error("Ошибка при очистке корзины:", error);
+    }
+  };
+
+  const handleAddToCart = (product) => {
+    const productData = {
+      id: product.id,
+      productName: product.productName,
+      price: product.discountPrice,
+      image: product.image, 
+      quantity: 1,
+    };
+    dispatch(addToCart(productData)); 
+  };
+
+  const subtotal = cartItems.reduce((acc, item) => acc + item.discountPrice * item.quantity, 0);
+
+  if (loading) {
+    return <div className="text-center mt-10">Загрузка...</div>;
+  }
 
   return (
     <div className="max-w-4xl mt-[100px] mx-auto p-6 sm:p-4">
@@ -40,10 +87,12 @@ const Cart = () => {
             {cartItems.map((item) => (
               <tr key={item.id} className="shadow-md">
                 <td className="p-2 flex items-center gap-3">
-                  <img src={item.image} alt={item.name} className="w-12 h-12" />
-                  {item.name}
+                  <img src={item.image || "default_image_url"} alt={item.productName} className="w-12 h-12" />
+                  <div>
+                    <p className="font-medium">{item.productName}</p>
+                  </div>
                 </td>
-                <td className="p-2">${item.price}</td>
+                <td className="p-2">${item.discountPrice}</td>
                 <td className="p-2">
                   <input
                     type="number"
@@ -53,9 +102,9 @@ const Cart = () => {
                     min="1"
                   />
                 </td>
-                <td className="p-2">${item.price * item.quantity}</td>
+                <td className="p-2">${item.discountPrice * item.quantity}</td>
                 <td className="p-2">
-                  <button onClick={() => del(item.id)} className="text-red-500">
+                  <button onClick={() => handleRemoveFromCart(item.id)} className="text-red-500">
                     <FaTrashAlt />
                   </button>
                 </td>
@@ -67,8 +116,7 @@ const Cart = () => {
           <Link to="/allProduct">
             <button className="border px-7 py-2 rounded border-gray-500 cursor-pointer w-full sm:w-auto">Return To Shop</button>
           </Link>
-          <button className="border px-4 py-2 rounded cursor-pointer w-full ml-100 sm:w-auto">Update Cart</button>
-          <button className="border px-4 py-2 rounded text-red-500 cursor-pointer w-full sm:w-auto">Remove all</button>
+          <button onClick={handleClearCart} className="border px-4 py-2 rounded text-red-500 cursor-pointer w-full sm:w-auto">Remove all</button>
         </div>
         <div className="mt-6 flex flex-col sm:flex-row gap-2">
           <input
