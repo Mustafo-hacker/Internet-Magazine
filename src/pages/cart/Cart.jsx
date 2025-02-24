@@ -16,7 +16,7 @@ const Cart = () => {
         const response = await axiosInstance.get("/get-cart");
         dispatch(setCart(response.data.items));
       } catch (error) {
-        console.error("Ошибка при загрузке корзины:", error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -30,7 +30,7 @@ const Cart = () => {
     try {
       await axiosInstance.post("/update-cart", { id, quantity: value });
     } catch (error) {
-      console.error("Ошибка при обновлении количества:", error);
+      console.error(error);
     }
   };
 
@@ -39,7 +39,7 @@ const Cart = () => {
     try {
       await axiosInstance.post("/remove-from-cart", { id });
     } catch (error) {
-      console.error("Ошибка при удалении из корзины:", error);
+      console.error(error);
     }
   };
 
@@ -48,19 +48,8 @@ const Cart = () => {
     try {
       await axiosInstance.post("/clear-cart");
     } catch (error) {
-      console.error("Ошибка при очистке корзины:", error);
+      console.error(error);
     }
-  };
-
-  const handleAddToCart = (product) => {
-    const productData = {
-      id: product.id,
-      productName: product.productName,
-      price: product.discountPrice,
-      image: product.image, 
-      quantity: 1,
-    };
-    dispatch(addToCart(productData)); 
   };
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.discountPrice * item.quantity, 0);
@@ -93,14 +82,10 @@ const Cart = () => {
                   </div>
                 </td>
                 <td className="p-2">${item.discountPrice}</td>
-                <td className="p-2">
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-                    className="w-16 border rounded p-1"
-                    min="1"
-                  />
+                <td className="p-2 flex items-center gap-2">
+                  <button onClick={() => handleQuantityChange(item.id, item.quantity - 1)} className="border px-2 py-1 rounded">-</button>
+                  <span className="px-3">{item.quantity}</span>
+                  <button onClick={() => handleQuantityChange(item.id, item.quantity + 1)} className="border px-2 py-1 rounded">+</button>
                 </td>
                 <td className="p-2">${item.discountPrice * item.quantity}</td>
                 <td className="p-2">

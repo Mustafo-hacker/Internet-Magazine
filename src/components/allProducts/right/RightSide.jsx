@@ -54,13 +54,13 @@ const RightSide = () => {
                     <p>{addedProduct.productName} успешно добавлен в корзину!</p>
                 </div>
             )}
-            <div className="flex flex-wrap ml-[50px] mt-[140px] max-[638px]:ml-[35px] max-[638px]:mt-[30px]">
+            <div className="flex flex-wrap ml-[50px] mt-[140px] max-[638px]:ml-[30px] max-[638px]:mt-[30px]">
                 {Array.isArray(data?.products) && data.products.map((el) => (
                     <div
                         key={el.id}
                         className="rounded-lg p-4 relative group transition-all duration-300"
                     >
-                        <div className="relative flex justify-center w-[290px] h-[240px] items-center bg-gray-100 p-4 rounded-lg">
+                        <div className="relative flex justify-center w-[300px] h-[240px] items-center bg-gray-100 p-4 rounded-lg">
                             <img src={"https://store-api.softclub.tj/images/" + el.image} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]" />
                             <button className="absolute top-2 right-2 cursor-pointer bg-white p-1 rounded-full shadow">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 cursor-pointer">
@@ -75,12 +75,11 @@ const RightSide = () => {
                                     </svg>
                                 </button>
                             </Link>
-                            <button
-                                onClick={() => handleAddToCart(el)}
-                                className="absolute cursor-pointer bottom-0 bg-[black] text-white px-26 py-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                            >
+                            <button onClick={() => handleAddToCart(el)}
+                                className="absolute cursor-pointer bottom-0 bg-[black] text-white px-26 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 Add to cart
                             </button>
+
                         </div>
                         <h1 className="mt-4 font-[500] text-[17px] max-[638px]:text-sm">{el.productName}</h1>
                         <div className="flex items-center space-x-2 mt-2">
