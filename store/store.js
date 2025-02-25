@@ -5,6 +5,7 @@ import axiosRequest from "../axiosRequests/axiosRequest";
 
 export const useStore = create((set, get) => ({
     data: [],
+    product: {},
     total: "",
     getProducts: async () => {
         try {
@@ -89,7 +90,8 @@ export const useStore = create((set, get) => ({
             let { data } = await axiosRequest.get(
                 `/Product/get-product-by-id?id=${id}`
             );
-            set({ data: data.data });
+            
+            set({ product: data.data });
         } catch (error) {
             console.log(error);
         }

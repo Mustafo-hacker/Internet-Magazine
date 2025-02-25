@@ -17,7 +17,9 @@ const Layout = () => {
         <div>
             <nav>
                 <header className='fixed top-0 left-0 w-full bg-white shadow-md z-50 flex pl-[130px] py-4'>
-                    <img className='cursor-not-allowed max-[638px]:ml-[-120px]' src={logo} alt="" />
+                    <Link to="/home">
+                        <img className='cursor-pointer max-[638px]:ml-[-120px]' src={logo} alt="" />
+                    </Link>
                     <div className='pt-[10px]'>
                         <Link className={`pl-[140px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/home" ? "underline text-[red]" : "text-black"}`} to="/home">Home</Link>
                         <Link className={`pl-[40px] max-[638px]:hidden hover:text-[red] ${location.pathname === "/about" ? "underline text-[red]" : "text-black"}`} to="/about">About</Link>

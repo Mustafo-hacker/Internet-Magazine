@@ -47,10 +47,10 @@ const Oplata = () => {
 
         <div className="flex mb-4">
           <input type="text" placeholder="Coupon Code" className="border p-2 rounded-l w-full" />
-          <button className="bg-red-500 text-white px-4 py-2 rounded-r">Apply</button>
+          <button className="bg-red-500 text-white px-4 py-2 rounded-r hover:bg-red-400 cursor-pointer">Apply</button>
         </div>
 
-        <button className="bg-red-500 text-white px-6 py-3 w-full rounded">Place Order</button>
+        <button className="bg-red-500 text-white px-6 py-3 w-full rounded hover:bg-red-400 cursor-pointer">Place Order</button>
       </div>
       <div className="bg-white shadow-lg p-6 mt-5 md:mt-[-470px] rounded-lg w-full max-w-md md:max-w-none mx-auto">
         <h2 className="text-2xl font-semibold mb-4">Billing Details</h2>

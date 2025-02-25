@@ -3,11 +3,12 @@ import { useStore } from '../../../store/store';
 import { Link } from 'react-router-dom';
 
 const Wishlist = () => {
-  const { data, getProducts, addToCart } = useStore()
+  const { data, getProducts, addToCart,deleteCart } = useStore()
 
   useEffect(() => {
     getProducts();
   }, []);
+
 
 
   return (
@@ -30,7 +31,7 @@ const Wishlist = () => {
               </div>
               <img src={`https://store-api.softclub.tj/images/${el.image}`} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]" />
               <button
-                onClick={() => del(el.id)}
+                onClick={() => deleteCart(el.id)}
                 className="absolute top-2 right-2 cursor-pointer bg-white p-1 rounded-full shadow"
               >
                 <svg
@@ -48,7 +49,7 @@ const Wishlist = () => {
                   />
                 </svg>
               </button>
-              <Link to={`/infoPage/:${el.id}`}>
+              <Link to={`/infoPage/${el.id}`}>
                 <button className="absolute top-12 right-2 cursor-pointer bg-white p-1 rounded-full shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />

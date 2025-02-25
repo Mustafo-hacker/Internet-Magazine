@@ -7,7 +7,7 @@ import { useStore } from "../../../store/store";
 
 
 const Info = () => {
-  const { data, getProducts, addToCart, getProductById } = useStore()
+  const { data,product, getProducts, addToCart, getProductById } = useStore()
 
   const { id } = useParams()
 
@@ -34,23 +34,22 @@ const Info = () => {
             ))}
           </div>
           <img
-            src={sony}
-            alt="Gamepad"
+            src={product.image}
+            alt=""
             className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 object-contain"
           />
         </div>
 
         <div className="w-full lg:w-[450px]">
-          <h1 className="text-3xl font-bold">Havic HV G-92 Gamepad</h1>
+          <h1 className="text-3xl font-bold">{product.productName}</h1>
           <div className="flex items-center gap-2 mt-2">
             <span className="text-yellow-500 text-lg">★★★★☆</span>
-            <span className="text-gray-500">(300 Reviews)</span>
+            <span className="text-gray-500">({product.quantity} Reviews)</span>
             <span className="text-green-600 font-semibold">In Stock</span>
           </div>
-          <p className="text-3xl font-bold mt-4">$192.00</p>
+          <p className="text-3xl font-bold mt-4">${product.discountPrice}</p>
           <p className="text-gray-500 mt-2 text-sm">
-            PlayStation 5 controller skin tough out why faint not cool effect.
-            The artist & more.
+           {product.description}
           </p>
 
           <div className="mt-4">
@@ -82,9 +81,11 @@ const Info = () => {
           </div>
 
           <div className="mt-6 flex gap-4">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-red-600 transition duration-200">
-              Buy Now
-            </button>
+            <Link to="/oplata">
+              <button className="bg-red-500 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-red-600 transition duration-200">
+                Buy Now
+              </button>
+            </Link>
           </div>
 
           <div className="mt-6 space-y-3 border-t pt-4">
@@ -111,7 +112,7 @@ const Info = () => {
                 {`${el.quantity}%`}
               </div>
               <img src={`https://store-api.softclub.tj/images/${el.image}`} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]" />
-              <Link to={`/infoPage/:${el.id}`}>
+              <Link to={`/infoPage/${el.id}`}>
                 <button className="absolute top-3 right-2 cursor-pointer bg-white p-1 rounded-full shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />

@@ -34,16 +34,16 @@ const Cart = () => {
                   <img src={`https://store-api.softclub.tj/images/${el?.product?.image}`}
                     alt="" className="w-12 h-12" />
                   <div>
-                    <p className="font-medium">{el.product.productName}</p>
+                    <p className="font-medium">{el?.product?.productName}</p>
                   </div>
                 </td>
-                <td className="p-2">${el.product.discountPrice}</td>
+                <td className="p-2">${el?.product?.discountPrice}</td>  
                 <td className="p-2 flex items-center gap-2">
                   <button onClick={() => decrementfunc(el.id)} className="border px-2 py-1 rounded">-</button>
-                  <span className="px-3">{el.quantity}</span>
+                  <span className="px-3">{el?.quantity}</span>
                   <button onClick={() => incrimentfunc(el.id)} className="border px-2 py-1 rounded">+</button>
                 </td>
-                <td className="p-2">${el.product.discountPrice * el.quantity }</td>
+                <td className="p-2">${el?.product?.discountPrice * el.quantity }</td>
                 <td className="p-2">
                   <button onClick={() => deleteCart(el.id)} className="text-red-500">
                     <FaTrashAlt />

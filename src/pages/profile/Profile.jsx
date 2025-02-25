@@ -42,7 +42,7 @@ const Profile = () => {
                 <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" value="Kingston, 5226, United State" readOnly />
               </div>
               <div>
-                <input type="password" placeholder='Confirm new password' className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+                <input type="password" placeholder='Confirm new password' className="mt-19 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
               </div>
             </div>
           </div>
