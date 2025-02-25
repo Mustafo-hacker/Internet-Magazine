@@ -52,7 +52,7 @@ const App = () => {
           element: <Allproduct/>
         },
         {
-          path: "/infoPage",
+          path: "/infoPage/:id",
           element: <Info/>
         },
         {

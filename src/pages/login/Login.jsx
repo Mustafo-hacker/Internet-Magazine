@@ -57,7 +57,7 @@ const Login = () => {
                     className="w-full mb-6 p-3 border border-gray-300 rounded-md outline-none"
                 />
                 <div className="text-center mb-6">
-                    <Link to="/forgot-password" className="text-sm text-red-600 hover:underline">
+                    <Link to="/forgot" className="text-sm text-red-600 hover:underline">
                         Forgot Password?
                     </Link>
                 </div>

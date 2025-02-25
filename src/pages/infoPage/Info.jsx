@@ -2,63 +2,25 @@ import React, { useEffect, useState } from "react";
 import sony from '../../assets/sony.svg'
 import sony2 from '../../assets/sony2.svg'
 import sony3 from '../../assets/sony3.svg'
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axiosInstance from "../../../axiosRequests/axiosRequest";
-import { addToCart } from "../../redux-toolkit/cartSlice/cartSlice";
+import { Link, useParams } from "react-router-dom";
+import { useStore } from "../../../store/store";
 
 
 const Info = () => {
-  const [data, setData] = useState({ products: [] });
-  const [showModal, setShowModal] = useState(false);
-  const [addedProduct, setAddedProduct] = useState(null);
-  const dispatch = useDispatch();
+  const { data, getProducts, addToCart, getProductById } = useStore()
 
-  const get = async () => {
-    try {
-      const response = await axiosInstance.get("https://store-api.softclub.tj/Product/get-products");
-      console.log("API Response:", response.data);
-      setData(response.data.data || { products: [] });
-    } catch (error) {
-      console.error("Ошибка при получении данных:", error);
-    }
-  };
-
-  async function postToCard(id) {
-    try {
-      await axiosInstance.post(`/add-product-to-card?id=${id}`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const handleAddToCart = async (product) => {
-    if (!product?.id) return;
-    dispatch(addToCart(product));
-    setAddedProduct(product);
-    setShowModal(true);
-
-    setTimeout(() => {
-      setShowModal(false);
-    }, 3000);
-
-    postToCard(product.id);
-  };
+  const { id } = useParams()
 
   useEffect(() => {
-    get();
+    getProducts();
+    getProductById(id)
   }, []);
 
 
-  const [quantity, setQuantity] = useState(1);
 
   return (
     <>
-      {showModal && addedProduct && (
-        <div className="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50">
-          <p>{addedProduct.productName} успешно добавлен в корзину!</p>
-        </div>
-      )}
+
       <div className="flex flex-col lg:flex-row gap-10 p-10 mt-[100px] max-w-6xl mx-auto">
         <div className="flex gap-3 flex-col lg:flex-row">
           <div className="flex flex-col gap-2">
@@ -109,7 +71,7 @@ const Info = () => {
               >
                 -
               </button>
-              <span className="px-4 py-1">{quantity}</span>
+              <span className="px-4 py-1"></span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
                 className="px-3 py-1 bg-gray-200 hover:bg-gray-300 transition duration-200"
@@ -142,14 +104,14 @@ const Info = () => {
         <h1 className='text-[#DB4444] font-[600] pt-[50px] pl-[15px] max-[638px]:pt-[50px] max-[638px]:pl-[10px]'>Related Item</h1>
       </div>
       <div className="flex flex-wrap ml-[120px] max-[638px]:ml-[38px]">
-        {Array.isArray(data?.products) && data.products.map((el) => (
+        {data.map((el) => (
           <div key={el.id} className="rounded-lg p-4 relative group transition-all duration-300 max-[638px]:w-[100%] max-[638px]:p-2">
             <div className="relative flex justify-center w-[290px] h-[240px] items-center bg-gray-100 p-4 rounded-lg max-[638px]:w-[300px] max-[638px]:h-[200px]">
               <div className="absolute top-3 left-2 bg-red-500 text-white px-2 py-1 text-sm rounded">
                 {`${el.quantity}%`}
               </div>
               <img src={`https://store-api.softclub.tj/images/${el.image}`} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]" />
-              <Link to="/infoPage">
+              <Link to={`/infoPage/:${el.id}`}>
                 <button className="absolute top-3 right-2 cursor-pointer bg-white p-1 rounded-full shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -157,7 +119,8 @@ const Info = () => {
                   </svg>
                 </button>
               </Link>
-              <button onClick={() => handleAddToCart(el)}
+              <button
+                onClick={() => addToCart(el.id)}
                 className="absolute cursor-pointer bottom-0 bg-[black] text-white px-26 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 Add to cart
               </button>

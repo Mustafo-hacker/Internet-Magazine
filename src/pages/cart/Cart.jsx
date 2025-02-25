@@ -1,63 +1,18 @@
-import { useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axiosInstance from "../../../axiosRequests/axiosRequest";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, clearCart, updateQuantity, setCart, addToCart } from "../../redux-toolkit/cartSlice/cartSlice";
+import { useStore } from "../../../store/store";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+
+  let { data, getCart, deleteCart, clearCart, total, decrementfunc, incrimentfunc } = useStore()
 
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await axiosInstance.get("/get-cart");
-        dispatch(setCart(response.data.items));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCart();
-  }, [dispatch]);
+    getCart()
+  }, [])
 
-  const handleQuantityChange = async (id, value) => {
-    if (value < 1) return;
-    dispatch(updateQuantity({ id, quantity: value }));
-    try {
-      await axiosInstance.post("/update-cart", { id, quantity: value });
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  const handleRemoveFromCart = async (id) => {
-    dispatch(removeFromCart(id));
-    try {
-      await axiosInstance.post("/remove-from-cart", { id });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleClearCart = async () => {
-    dispatch(clearCart());
-    try {
-      await axiosInstance.post("/clear-cart");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const subtotal = cartItems.reduce((acc, item) => acc + item.discountPrice * item.quantity, 0);
-
-  if (loading) {
-    return <div className="text-center mt-10">Загрузка...</div>;
-  }
-
+  
   return (
     <div className="max-w-4xl mt-[100px] mx-auto p-6 sm:p-4">
       <h2 className="text-xl font-semibold mb-4">Cart</h2>
@@ -73,23 +28,24 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.id} className="shadow-md">
+            {data.map((el) => (
+              <tr key={el.id} className="shadow-md">
                 <td className="p-2 flex items-center gap-3">
-                  <img src={item.image || "default_image_url"} alt={item.productName} className="w-12 h-12" />
+                  <img src={`https://store-api.softclub.tj/images/${el?.product?.image}`}
+                    alt="" className="w-12 h-12" />
                   <div>
-                    <p className="font-medium">{item.productName}</p>
+                    <p className="font-medium">{el.product.productName}</p>
                   </div>
                 </td>
-                <td className="p-2">${item.discountPrice}</td>
+                <td className="p-2">${el.product.discountPrice}</td>
                 <td className="p-2 flex items-center gap-2">
-                  <button onClick={() => handleQuantityChange(item.id, item.quantity - 1)} className="border px-2 py-1 rounded">-</button>
-                  <span className="px-3">{item.quantity}</span>
-                  <button onClick={() => handleQuantityChange(item.id, item.quantity + 1)} className="border px-2 py-1 rounded">+</button>
+                  <button onClick={() => decrementfunc(el.id)} className="border px-2 py-1 rounded">-</button>
+                  <span className="px-3">{el.quantity}</span>
+                  <button onClick={() => incrimentfunc(el.id)} className="border px-2 py-1 rounded">+</button>
                 </td>
-                <td className="p-2">${item.discountPrice * item.quantity}</td>
+                <td className="p-2">${el.product.discountPrice * el.quantity }</td>
                 <td className="p-2">
-                  <button onClick={() => handleRemoveFromCart(item.id)} className="text-red-500">
+                  <button onClick={() => deleteCart(el.id)} className="text-red-500">
                     <FaTrashAlt />
                   </button>
                 </td>
@@ -101,7 +57,7 @@ const Cart = () => {
           <Link to="/allProduct">
             <button className="border px-7 py-2 rounded border-gray-500 cursor-pointer w-full sm:w-auto">Return To Shop</button>
           </Link>
-          <button onClick={handleClearCart} className="border px-4 py-2 rounded text-red-500 cursor-pointer w-full sm:w-auto">Remove all</button>
+          <button onClick={() => clearCart()} className="border px-4 py-2 rounded text-red-500 cursor-pointer w-full sm:w-auto">Remove all</button>
         </div>
         <div className="mt-6 flex flex-col sm:flex-row gap-2">
           <input
@@ -114,9 +70,9 @@ const Cart = () => {
       </div>
       <div className="mt-6 p-4 border rounded-lg w-full sm:w-1/3 ml-auto">
         <h3 className="font-semibold text-lg">Cart Total</h3>
-        <p className="flex justify-between mt-2">Subtotal: <span>${subtotal}</span></p>
+        <p className="flex justify-between mt-2">Subtotal: <span>${total}</span></p>
         <p className="flex justify-between">Shipping: <span>Free</span></p>
-        <p className="flex justify-between font-bold text-lg mt-2">Total: <span>${subtotal}</span></p>
+        <p className="flex justify-between font-bold text-lg mt-2">Total: <span>${total }</span></p>
         <Link to="/oplata">
           <button className="mt-4 w-full bg-red-500 text-white py-2 rounded cursor-pointer">Proceed to checkout</button>
         </Link>
