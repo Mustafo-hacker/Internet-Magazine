@@ -13,14 +13,14 @@ const RightSide = () => {
 
     return (
         <div>
-            <div className="flex flex-wrap ml-[50px] mt-[140px] max-[638px]:ml-[30px] max-[638px]:mt-[30px]">
+            <div className="flex flex-wrap ml-[50px] mt-[140px] max-[638px]:ml-[0px] max-[638px]:mt-[30px]">
                 {data.map((el) => (
                     <div
                         key={el.id}
                         className="rounded-lg p-4 relative group transition-all duration-300"
                     >
-                        <div className="relative flex justify-center w-[300px] h-[240px] items-center bg-gray-100 p-4 rounded-lg">
-                            <img src={"https://store-api.softclub.tj/images/" + el.image} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]" />
+                        <div className="relative flex justify-center w-[360px] h-[240px] items-center bg-gray-100 p-4 rounded-lg">
+                            <img src={"https://store-api.softclub.tj/images/" + el.image} alt={el.productName} className="w-36 h-36 object-contain max-[638px]:w-[100%] max-[638px]:h-[70%]" />
                             <button className="absolute top-2 right-2 cursor-pointer bg-white p-1 rounded-full shadow">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 cursor-pointer">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
@@ -36,7 +36,7 @@ const RightSide = () => {
                             </Link>
                             <button
                                 onClick={() => addToCart(el.id)}
-                                className="absolute cursor-pointer bottom-0 bg-[black] text-white px-26 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                className="absolute cursor-pointer bottom-0 bg-[black] text-white px-35 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 Add to cart
                             </button>
 
