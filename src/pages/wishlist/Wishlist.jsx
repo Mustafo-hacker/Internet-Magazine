@@ -3,17 +3,111 @@ import { useStore } from '../../../store/store';
 import { Link } from 'react-router-dom';
 
 const Wishlist = () => {
-  const { data, getProducts, addToCart,deleteCart } = useStore()
+  const { data, getProducts, addToCart, deleteCart, cart } = useStore()
 
   useEffect(() => {
     getProducts();
   }, []);
 
 
+  const [showModal, setShowModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState("")
+  const [modalType, setModalType] = useState("success")
+
+
+  const handleAddToCart = (productId) => {
+    const isProductInCart = cart?.some((item) => item.id === productId)
+
+    if (isProductInCart) {
+      setModalMessage("This product is already in cart!")
+      setModalType("warning")
+    } else {
+      addToCart(productId)
+      setModalMessage("Product successfully added to cart!")
+      setModalType("success")
+    }
+
+    setShowModal(true)
+
+    setTimeout(() => {
+      setShowModal(false)
+    }, 2000)
+  }
+
 
   return (
     <div>
-
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-50" onClick={() => setShowModal(false)}></div>
+          <div
+            className={`relative bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4 transform transition-all duration-300 ${showModal ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+              } ${modalType === "success" ? "border-l-4 border-green-500" : "border-l-4 border-red-500"}`}
+          >
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex items-center">
+              {modalType === "success" ? (
+                <div className="bg-green-100 p-2 rounded-full mr-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-green-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              ) : (
+                <div className="bg-red-100 p-2 rounded-full mr-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-red-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </div>
+              )}
+              <div>
+                <h3 className={`text-lg font-medium ${modalType === "success" ? "text-green-800" : "text-red-800"}`}>
+                  {modalType === "success" ? "Success!" : "Already in Cart"}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">{modalMessage}</p>
+              </div>
+            </div>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={() => setShowModal(false)}
+                className={`px-4 py-2 rounded-md text-white ${modalType === "success" ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
+                  }`}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex items-center justify-between px-[140px] pt-[80px] max-[638px]:grid">
         <h1 className="font-[400] text-[18px] max-[638px]:ml-[-90px]">Wishlist (4)</h1>
         <p className="mt-[50px] mb-[40px] max-[638px]:ml-[-90px]">
@@ -22,10 +116,10 @@ const Wishlist = () => {
           </span>
         </p>
       </div>
-      <div className="flex flex-wrap ml-[120px] max-[638px]:ml-[38px]">
+      <div className="flex flex-wrap ml-[120px] max-[638px]:ml-[0px]">
         {data.map((el) => (
           <div key={el.id} className="rounded-lg p-4 relative group transition-all duration-300 max-[638px]:w-[100%] max-[638px]:p-2">
-            <div className="relative flex justify-center w-[290px] h-[240px] items-center bg-gray-100 p-4 rounded-lg max-[638px]:w-[300px] max-[638px]:h-[200px]">
+            <div className="relative flex justify-center w-[290px] h-[240px] items-center bg-gray-100 p-4 rounded-lg max-[638px]:w-[100%] max-[638px]:h-[200px]">
               <div className="absolute top-3 left-2 bg-red-500 text-white px-2 py-1 text-sm rounded">
                 {`${el.quantity}%`}
               </div>
@@ -58,8 +152,8 @@ const Wishlist = () => {
                 </button>
               </Link>
               <button
-                onClick={() => addToCart(el.id)}
-                className="absolute cursor-pointer bottom-0 bg-[black] text-white px-26 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                onClick={() => handleAddToCart(el.id)}
+                className="absolute cursor-pointer bottom-0 bg-[black] text-white  px-26 max-[638px]:px-35 py-2 rounded-md max-[638px]:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 Add to cart
               </button>
             </div>
