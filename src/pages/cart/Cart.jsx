@@ -37,13 +37,13 @@ const Cart = () => {
                     <p className="font-medium">{el?.product?.productName}</p>
                   </div>
                 </td>
-                <td className="p-2">${el?.product?.discountPrice}</td>  
+                <td className="p-2">${el?.product?.price}</td>  
                 <td className="p-2 flex items-center gap-2">
                   <button onClick={() => decrementfunc(el.id)} className="border px-2 py-1 rounded">-</button>
                   <span className="px-3">{el?.quantity}</span>
                   <button onClick={() => incrimentfunc(el.id)} className="border px-2 py-1 rounded">+</button>
                 </td>
-                <td className="p-2">${el?.product?.discountPrice * el.quantity }</td>
+                <td className="p-2">${el?.product?.price * el.quantity }</td>
                 <td className="p-2">
                   <button onClick={() => deleteCart(el.id)} className="text-red-500">
                     <FaTrashAlt />
@@ -72,7 +72,7 @@ const Cart = () => {
         <h3 className="font-semibold text-lg">Cart Total</h3>
         <p className="flex justify-between mt-2">Subtotal: <span>${total}</span></p>
         <p className="flex justify-between">Shipping: <span>Free</span></p>
-        <p className="flex justify-between font-bold text-lg mt-2">Total: <span>${total }</span></p>
+        <p className="flex justify-between font-bold text-lg mt-2">Total: <span>${total}</span></p>
         <Link to="/oplata">
           <button className="mt-4 w-full bg-red-500 text-white py-2 rounded cursor-pointer">Proceed to checkout</button>
         </Link>

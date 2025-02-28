@@ -37,9 +37,8 @@ const Sect5 = () => {
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                     <div className="absolute inset-0 bg-black opacity-50" onClick={() => setShowModal(false)}></div>
                     <div
-                        className={`relative bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4 transform transition-all duration-300 ${
-                            showModal ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
-                        } ${modalType === "success" ? "border-l-4 border-green-500" : "border-l-4 border-red-500"}`}
+                        className={`relative bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4 transform transition-all duration-300 ${showModal ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+                            } ${modalType === "success" ? "border-l-4 border-green-500" : "border-l-4 border-red-500"}`}
                     >
                         <button
                             onClick={() => setShowModal(false)}
@@ -96,9 +95,8 @@ const Sect5 = () => {
                         <div className="mt-4 flex justify-end">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className={`px-4 py-2 rounded-md text-white ${
-                                    modalType === "success" ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
-                                }`}
+                                className={`px-4 py-2 rounded-md text-white ${modalType === "success" ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
+                                    }`}
                             >
                                 OK
                             </button>
@@ -143,8 +141,8 @@ const Sect5 = () => {
                         </div>
                         <h1 className="mt-4 font-[500] text-[17px] max-[638px]:text-[15px]">{el.productName}</h1>
                         <div className="flex items-center space-x-2 mt-2">
-                            <p className="text-red-500 font-bold text-md">${el.discountPrice}</p>
-                            <p className="text-gray-400 line-through">${el.price}</p>
+                            <p className="text-red-500 font-bold text-md">${el.price}</p>
+                            <p className="text-gray-400 line-through">${el.discountPrice}</p>
                         </div>
                         <div className="flex items-center mt-2">
                             <p className="text-yellow-500"><h1>★★★★★</h1></p>

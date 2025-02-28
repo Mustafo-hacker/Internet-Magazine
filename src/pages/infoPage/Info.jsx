@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom"
 import { useStore } from "../../../store/store"
 
 const Info = () => {
-  const { data, product, getProducts, addToCart, getProductById,cart  } = useStore()
+  const { data, product, getProducts, addToCart, getProductById, cart } = useStore()
   const [quantity, setQuantity] = useState(1)
   const { id } = useParams()
 
@@ -268,8 +268,8 @@ const Info = () => {
             </div>
             <h1 className="mt-4 font-[500] text-[17px] max-[638px]:text-[15px]">{el.productName}</h1>
             <div className="flex space-x-2 mt-2 max-[638px]:flex-col">
-              <p className="text-red-500 font-bold text-md">${el.discountPrice}</p>
-              <p className="text-gray-400 line-through">${el.price}</p>
+              <p className="text-red-500 font-bold text-md">${el.price}</p>
+              <p className="text-gray-400 line-through">${el.discountPrice}</p>
             </div>
           </div>
         ))}

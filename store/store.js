@@ -11,8 +11,6 @@ export const useStore = create((set, get) => ({
         try {
             let { data } = await axiosRequest.get("https://store-api.softclub.tj/Product/get-products");
             set({ data: data.data.products });
-            // console.log({data:data.data});
-
         } catch (error) {
             console.log(error);
         }
@@ -39,7 +37,7 @@ export const useStore = create((set, get) => ({
         try {
             let { data } = await axiosRequest.get('https://store-api.softclub.tj/Cart/get-products-from-cart')
             set({ data: data.data[0].productsInCart });
-            set({ total: data.data[0].totalDiscountPrice });
+            set({ total: data.data[0].totalPrice });
             // console.log({data:data.data});
 
         } catch (error) {
@@ -70,7 +68,6 @@ export const useStore = create((set, get) => ({
         try {
             await axiosRequest.put(`/Cart/reduce-product-in-cart?id=${id}`);
             get().getCart();
-            // set( {data:data.data.products} );
         } catch (error) {
             console.error(error);
         }
@@ -79,8 +76,6 @@ export const useStore = create((set, get) => ({
         try {
             await axiosRequest.put(`/Cart/increase-product-in-cart?id=${id}`);
             get().getCart();
-
-            // set( {data:data.data.products} )
         } catch (error) {
             console.error(error);
         }
@@ -90,7 +85,6 @@ export const useStore = create((set, get) => ({
             let { data } = await axiosRequest.get(
                 `/Product/get-product-by-id?id=${id}`
             );
-            
             set({ product: data.data });
         } catch (error) {
             console.log(error);
