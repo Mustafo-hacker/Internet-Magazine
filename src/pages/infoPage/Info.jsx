@@ -17,15 +17,6 @@ const Info = () => {
     getProductById(id)
   }, [id, getProducts, getProductById])
 
-  useEffect(() => {
-    console.log("Product:", product)
-    console.log("Image path:", product?.image ? `https://store-api.softclub.tj/images/${product.image}` : "No image")
-  }, [product])
-
-  const handleImageError = (e) => {
-    console.error("Image failed to load:", e.target.src)
-    e.target.src = "https://via.placehoylder.com/300"
-  }
   const [showModal, setShowModal] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
   const [modalType, setModalType] = useState("success")
@@ -49,7 +40,17 @@ const Info = () => {
       setShowModal(false)
     }, 2000)
   }
+  const [selectedImage, setSelectedImage] = useState("");
 
+  useEffect(() => {
+    if (product?.images?.length > 0) {
+      setSelectedImage(`https://store-api.softclub.tj/images/${product.images[0].images}`);
+    }
+  }, [product]);
+
+  const handleImageClick = (img) => {
+    setSelectedImage(`https://store-api.softclub.tj/images/${img.images}`);
+  };
 
 
   return (
@@ -129,27 +130,31 @@ const Info = () => {
       </div>
       <div className="flex flex-col lg:flex-row gap-10 p-10 mt-[100px] max-w-6xl mx-auto">
         <div className="flex gap-3 flex-col lg:flex-row">
-          <div className="flex flex-col gap-2">
-            {[sony, sony2, sony3].map((img, index) => (
-              <img
-                key={index}
-                src={img || "/placeholder.svg"}
-                alt={`Thumbnail ${index + 1}`}
-                className="w-20 h-20 bg-[#80808034] mt-2 rounded-md cursor-pointer transition-all duration-300 hover:scale-105"
-                onError={handleImageError}
-              />
-            ))}
+          <div className="flex max-h-[500px] max-w-[500px] overflow-auto flex-col gap-2">
+            {product?.images?.length > 0 ? (
+              product.images.map((img, index) => (
+                <img
+                  key={index}
+                  src={`https://store-api.softclub.tj/images/${img.images}`}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="w-20 h-20 bg-[#80808034] mt-2 rounded-md cursor-pointer transition-all duration-300 hover:scale-105"
+                  onClick={() => handleImageClick(img)} 
+                />
+              ))
+            ) : (
+              <p>No images available</p>
+            )}
           </div>
-          {product && product.image ? (
+
+          {selectedImage ? (
             <img
-              src={`https://store-api.softclub.tj/images/${product.image}`}
+              src={selectedImage}
               alt={product.productName || "Product"}
               className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 object-contain"
-              onError={handleImageError}
             />
           ) : (
             <div className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 flex items-center justify-center">
-              <p>Image loading...</p>
+              <p>Loading image...</p>
             </div>
           )}
         </div>
@@ -161,15 +166,16 @@ const Info = () => {
             <span className="text-gray-500">({product?.quantity || 0} Reviews)</span>
             <span className="text-green-600 font-semibold">In Stock</span>
           </div>
-          <p className="text-3xl font-bold mt-4">${product?.discountPrice || "0.00"}</p>
+          <p className="text-3xl font-bold mt-4">${product?.price || "0.00"}</p>
           <p className="text-gray-500 mt-2 text-sm">{product?.description || "Loading product description..."}</p>
 
           <div className="mt-4">
             <h3 className="font-semibold">Colours:</h3>
             <div className="flex gap-2 mt-2">
-              <span className="w-6 h-6 bg-black rounded-full cursor-pointer border transition-colors duration-200 hover:bg-gray-600"></span>
-              <span className="w-6 h-6 bg-red-500 rounded-full cursor-pointer border transition-colors duration-200 hover:bg-red-700"></span>
-              <span className="w-6 h-6 bg-gray-300 rounded-full cursor-pointer border transition-colors duration-200 hover:bg-gray-500"></span>
+              <span
+                className="w-6 h-6 rounded-full cursor-pointer transition-colors duration-200"
+                style={{ backgroundColor: product.color }}
+              ></span>
             </div>
           </div>
 
@@ -233,7 +239,6 @@ const Info = () => {
                   src={`https://store-api.softclub.tj/images/${el.image}`}
                   alt={el.productName}
                   className="w-36 h-36 object-contain max-[638px]:w-[70%] max-[638px]:h-[70%]"
-                  onError={handleImageError}
                 />
               ) : (
                 <div className="w-36 h-36 bg-gray-200 flex items-center justify-center">

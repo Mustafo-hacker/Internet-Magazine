@@ -9,7 +9,7 @@ export const useStore = create((set, get) => ({
     total: "",
     getProducts: async () => {
         try {
-            let { data } = await axiosRequest.get("https://store-api.softclub.tj/Product/get-products");
+            let { data } = await axiosRequest.get("https://store-api.softclub.tj/Product/get-products?PageSize=100000");
             set({ data: data.data.products });
         } catch (error) {
             console.log(error);
