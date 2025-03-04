@@ -7,6 +7,7 @@ export const useStore = create((set, get) => ({
     data: [],
     product: {},
     total: "",
+    categories:[],
     getProducts: async () => {
         try {
             let { data } = await axiosRequest.get("https://store-api.softclub.tj/Product/get-products?PageSize=100000");
@@ -17,9 +18,9 @@ export const useStore = create((set, get) => ({
     },
     getCategory: async () => {
         try {
-            let { dataCateg } = await axios.get("https://store-api.softclub.tj/Category/get-categories");
-            set({ categories: dataCateg.data });
-            console.log({ data: dataCateg.data });
+            let { data } = await axios.get("https://store-api.softclub.tj/Category/get-categories");
+            set({ categories: data.data });
+            console.log({ categories: data.data });
 
         } catch (error) {
             console.log(error);

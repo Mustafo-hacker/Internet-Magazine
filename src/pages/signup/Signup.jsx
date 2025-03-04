@@ -29,6 +29,7 @@ const Signup = () => {
         try {
             let { data } = await axios.post("https://store-api.softclub.tj/Account/register", user);
             window.location.href = "/login";
+            alert("Your account has been registered")
         } catch (error) {
             setError('This user is already exists.');
             console.log(error);
@@ -37,7 +38,7 @@ const Signup = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen">
-            <div className="w-[400px] p-6 rounded-lg ">
+            <div className="w-[400px] p-6 rounded-lg mt-[30px]">
                 <h2 className="text-2xl font-[500] tracking-[2px] text-[27px] mb-1">Create an account</h2>
                 <p className="text-sm text-gray-900 mb-6 font-[400]">Enter your details below</p>
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}

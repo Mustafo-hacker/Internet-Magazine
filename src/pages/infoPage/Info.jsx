@@ -150,7 +150,7 @@ const Info = () => {
             <img
               src={selectedImage}
               alt={product.productName || "Product"}
-              className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 object-contain"
+              className="w-[400px] h-[400px] ml-3 bg-[#8080802b] mt-2 object-contain"
             />
           ) : (
             <div className="w-[300px] h-[300px] ml-3 bg-[#8080802b] mt-2 flex items-center justify-center">

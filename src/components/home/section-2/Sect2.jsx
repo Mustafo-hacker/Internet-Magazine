@@ -109,7 +109,7 @@ const Sect2 = () => {
         </div>
       )}
 
-      <div className="flex">
+      <div className="flex mt-[80px]">
         <p className="bg-[#DB4444] ml-[140px] w-[25px] h-[45px] rounded-[4px] mt-[40px] max-[638px]:ml-[20px]"></p>
         <h1 className="text-[#DB4444] font-[600] pt-[50px] pl-[15px] max-[638px]:pt-[50px] max-[638px]:pl-[10px]">
           Today's

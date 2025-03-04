@@ -12,6 +12,7 @@ import Allproduct from './pages/allProduct/Allproduct'
 import Info from './pages/infoPage/Info'
 import Profile from './pages/profile/Profile'
 import Oplata from './pages/oplata/Oplata'
+import Succes from './pages/succes/Succes'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const App = () => {
         {
           path:"/oplata",
           element:<Oplata/>
+        },
+        {
+          path: "/succes",
+          element: <Succes/>
         }
       ]
     }
