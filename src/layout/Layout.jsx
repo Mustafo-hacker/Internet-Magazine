@@ -9,6 +9,8 @@ const Layout = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const location = useLocation()
 
+  let [search, setSearch] = useState("")
+
   const toggleModal = () => {
     setModalOpen(!isModalOpen)
   }
@@ -50,6 +52,8 @@ const Layout = () => {
               className="bg-[#80808021] ml-[60px] rounded-[5px] w-[200px] h-[35px] pl-[10px] placeholder:text-[13px]"
               placeholder="What are you looking for?"
               type="text"
+              value={search}
+              onChange={(el) => setSearch(el.target.value)}
             />
 
             <Link to="/wishlist">
@@ -110,18 +114,18 @@ const Layout = () => {
             </Link>
           </div>
 
-          <button className="md:hidden block" onClick={toggleModal}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 5h18M3 12h18M3 19h18" />
-            </svg>
-          </button>
+          <button className="md:hidden block absolute right-4" onClick={toggleModal}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5h18M3 12h18M3 19h18" />
+    </svg>
+  </button>
         </header>
 
         <p className="bg-[#8080807b] w-[100%] h-[1px] mt-[20px]"></p>
